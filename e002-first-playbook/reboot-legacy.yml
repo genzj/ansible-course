@@ -1,0 +1,22 @@
+---
+- hosts: server
+  gather_facts: false
+  become: yes
+
+  tasks:
+  - name: reboot immediately
+    shell: sleep 5 && reboot
+    async: 100
+    poll: 0
+
+  - name: wait for the reboot to complete
+    wait_for_connection:
+      sleep: 5
+      delay: 5
+      timeout: 300
+
+  - name: check uptime
+    command: uptime -p
+    register: output
+
+

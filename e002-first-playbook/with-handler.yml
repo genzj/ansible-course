@@ -1,0 +1,69 @@
+---
+- hosts: server
+
+  tasks:
+  - name: ensure group web is present
+    group:
+      name: web
+    become: yes
+
+  - name: ensure user web is present
+    user:
+      group: web
+      name: web
+    become: yes
+
+  - name: update apt cache then upgrade installed packages
+    apt:
+      update_cache: yes
+      upgrade: full
+    become: yes
+    notify:
+      - reboot system
+
+  - name: simulate changes
+    command: sleep 1
+    notify:
+      - reboot system
+
+  - name: install latest openjdk-8-jre
+    apt:
+      name: openjdk-8-jre
+      state: latest
+    become: yes
+
+  - name: create a folder for jar
+    file:
+      dest: /code/
+      state: directory
+      owner: web
+      group: web
+    become: yes
+
+  - name: copy jar file to remote
+    copy:
+      src: assets/hello-world.jar
+      dest: /code/hello-world.jar
+    become: yes
+    become_user: web
+
+  - meta: flush_handlers
+
+  - name: start the application as web user and capture the output
+    command: java -jar /code/hello-world.jar
+    become: yes
+    become_user: web
+    register: output
+
+  - name: check the output
+    debug:
+      var: output
+
+
+  handlers:
+  - name: reboot target host
+    reboot:
+      reboot_timeout: 300
+    listen: reboot system
+    become: yes
+

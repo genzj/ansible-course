@@ -1,0 +1,10 @@
+---
+- hosts: server
+  gather_facts: false
+  become: yes
+
+  tasks:
+  - name: reboot target host
+    reboot:
+      reboot_timeout: 300
+
