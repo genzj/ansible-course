@@ -1,0 +1,6 @@
+---
+- name: install nginx from apt, upgrade if necessary
+  apt:
+    name: nginx
+    state: latest
+  notify: restart nginx service

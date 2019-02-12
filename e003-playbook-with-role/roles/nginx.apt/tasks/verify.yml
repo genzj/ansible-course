@@ -1,0 +1,9 @@
+---
+- name: load the index page
+  get_url:
+    dest: /tmp/verify-index.html
+    url: "http://{{ inventory_hostname }}/"
+    force: yes
+
+- name: check index page content
+  command: grep -q 'powered by Ansible' /tmp/verify-index.html

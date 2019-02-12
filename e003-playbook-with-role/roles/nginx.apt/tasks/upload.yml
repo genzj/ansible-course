@@ -1,0 +1,12 @@
+---
+- name: upload static files
+  copy:
+    src: static_files/
+    dest: /var/www/html
+
+- name: render and upload html file
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+
+

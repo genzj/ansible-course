@@ -1,2 +1,5 @@
 ---
-# handlers file for common
+- name: reboot target host
+  reboot:
+    reboot_timeout: 300
+  listen: reboot system

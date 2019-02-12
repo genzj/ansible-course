@@ -1,2 +1,12 @@
----
-# tasks file for common
+- name: update apt cache then upgrade installed packages
+  apt:
+    update_cache: yes
+    upgrade: full
+  notify:
+    - reboot system
+
+# - name: simulate changes
+#   command: sleep 1
+#   notify:
+#     - reboot system
+
