@@ -1,0 +1,4 @@
+# from galaxy
+- src: geerlingguy.nginx
+  version: 2.6.2
+

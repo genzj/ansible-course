@@ -1,0 +1,4 @@
+---
+- import_tasks: upload.yml
+
+- import_tasks: verify.yml

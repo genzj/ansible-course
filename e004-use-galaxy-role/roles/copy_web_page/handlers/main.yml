@@ -1,0 +1,8 @@
+---
+- name: restart nginx service and enalbe auto-start
+  systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
+  listen: restart nginx service
+

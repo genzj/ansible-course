@@ -1,0 +1,11 @@
+---
+- hosts: server
+  become: yes
+
+  roles:
+  - common
+  - role: geerlingguy.nginx
+    vars:
+      nginx_remove_default_vhost: no
+  - copy_web_page
+
