@@ -1,0 +1,10 @@
+---
+- hosts: server
+  become: yes
+
+  roles:
+  - role: geerlingguy.mysql
+    vars:
+        mysql_root_password: "1314"
+        mysql_root_password_update: yes
+
