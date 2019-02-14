@@ -1,0 +1,9 @@
+[cluster]
+localhost
+127.0.1.11
+127.0.2.11
+
+
+[cluster:vars]
+ansible_connection=local
+

@@ -1,0 +1,17 @@
+---
+- name: create folder for config file
+  file:
+    dest: '/tmp/template-test/{{ inventory_hostname }}/'
+    state: directory
+
+- name: copy config to server
+  template:
+    src: config.ini.j2
+    dest: '/tmp/template-test/{{ inventory_hostname }}/config.ini'
+
+- name: display file content
+  command: cat '/tmp/template-test/{{ inventory_hostname }}/config.ini'
+  register: rc
+
+- debug:
+    var: rc.stdout_lines

@@ -1,0 +1,4 @@
+---
+- hosts: cluster
+  roles:
+    - cluster_configuration
