@@ -1,0 +1,6 @@
+{
+	"ANSIBLE_MODULE_ARGS": {
+		"expr": "x ** y",
+		"vars": { "x": 2, "y": 4}
+	}
+}

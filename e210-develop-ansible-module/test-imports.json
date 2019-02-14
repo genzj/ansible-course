@@ -1,0 +1,7 @@
+{
+	"ANSIBLE_MODULE_ARGS": {
+		"expr": "''.join(random.choices(candidates, k=8))",
+		"vars": { "candidates":  "abcdefg123456,.-=_+" },
+		"imports": [ "random", "os.path" ]
+	}
+}
