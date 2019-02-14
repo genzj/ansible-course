@@ -1,0 +1,14 @@
+---
+- hosts: server
+  gather_facts: no
+
+  tasks:
+  - name: test delegation
+    command: hostname
+    delegate_to: 192.168.32.136
+    register: rc
+
+  - name: test delegation
+    debug:
+      msg: "run on host {{ rc.stdout }}"
+

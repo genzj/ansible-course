@@ -1,0 +1,14 @@
+# +--------------+    +----------------+    +----------------+
+# |              |    |                |    |                |
+# | ansible-host +--->+ ansible-jumper +--->+internal-machine|
+# |              |    |                |    |                |
+# +--------------+    +----------------+    +----------------+
+
+Host ansible-jumper
+  HostName 192.168.32.135
+  User ansible
+  IdentityFile ~/ansible-exercise-key
+
+Host internal-machine-1
+  HostName 192.168.32.136
+  ProxyCommand ssh -F jumper.ssh_config -q ansible-jumper -W %h:%p

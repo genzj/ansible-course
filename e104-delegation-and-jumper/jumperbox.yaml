@@ -1,0 +1,11 @@
+---
+- hosts: internal-machines
+  gather_facts: no
+
+  tasks:
+  - name: test connection
+    ping:
+
+  - name: sleep for 1800 seconds
+    command: sleep 1800
+
