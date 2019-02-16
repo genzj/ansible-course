@@ -1,0 +1,51 @@
+- hosts: localhost
+  connection: local
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    pip_install_packages:
+      - name: docker
+
+    docker_users:
+      - host
+
+    docker_apt_repository: >
+      deb [arch={{ docker_apt_arch }}]
+       https://mirrors.aliyun.com/docker-ce/linux/{{ ansible_distribution|lower }}
+       {{ ansible_distribution_release }} {{ docker_apt_release_channel }}
+    docker_install_compose: false
+
+  roles:
+  - geerlingguy.pip
+  - geerlingguy.docker
+
+  tasks:
+  - name: configure registry mirror
+    copy:
+      content: |
+        {
+          "registry-mirrors": ["https://registry.docker-cn.com"]
+        }
+      dest: /etc/docker/daemon.json
+    notify: restart docker daemon
+
+  - name: pull python 3.7 image
+    docker_image:
+      name: python
+      tag: 3.7-alpine
+
+  - name: start a docker container for ansible connection
+    docker_container:
+      command:
+      - /bin/sh
+      - -c
+      - "'while true ; do sleep 3600 ; done'"
+      image: python:3.7-alpine
+      name: docker-test
+
+  handlers:
+  - name: restart docker daemon
+    service:
+      name: docker
+      state: restarted
+
