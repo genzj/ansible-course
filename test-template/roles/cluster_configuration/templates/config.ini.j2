@@ -1,0 +1,15 @@
+[cluster]
+bind-ips = {{ inventory_hostname }}
+cluster-ips = 
+{%- for ip in groups.cluster %}
+  {%- if ip != inventory_hostname -%}
+    {{ ' ' + ip + ("\n" if loop.last else ',') }}
+  {%- endif -%}
+{%- endfor %}
+
+
+{% block cluster %}
+new-cluster-ips = {{ groups.cluster | reject('eq', inventory_hostname) | join(', ') }}
+{% endblock %}
+
+log-path

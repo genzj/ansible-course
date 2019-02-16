@@ -1,0 +1,18 @@
+---
+# tasks file for common
+- name: upgrade system packages
+  apt:
+    update_cache: yes
+    upgrade: yes
+  notify: reboot system
+
+# - name: simulate reboot
+#   command: whoami
+#  notify: reboot system
+
+
+- meta: flush_handlers
+
+
+
+

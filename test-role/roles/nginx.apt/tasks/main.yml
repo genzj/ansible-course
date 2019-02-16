@@ -1,0 +1,7 @@
+---
+# tasks file for nginx.apt
+
+- import_tasks: install.yml
+- import_tasks: upload.yml
+- import_tasks: verify.yml
+

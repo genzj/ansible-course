@@ -1,0 +1,6 @@
+---
+- name: install nginx from repository
+  apt:
+    name: nginx
+    state: latest
+

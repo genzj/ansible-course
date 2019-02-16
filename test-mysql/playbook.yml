@@ -1,0 +1,25 @@
+---
+- hosts: server
+  become: yes
+
+  pre_tasks:
+  - name: generate random password
+    local_action: 
+      module: command openssl rand -hex 10
+    register: rc
+    run_once: yes
+
+
+  - name: set mysql root password
+    set_fact:
+      mysql_root_password: '{{ rc.stdout_lines[0] }}'
+    delegate_to: 127.0.0.1
+    run_once: yes
+
+  
+  post_tasks:
+  - name: print root password
+    debug:
+      msg: 'password: -------------- [{{ mysql_root_password }}] --------------'
+    delegate_to: 127.0.0.1
+    run_once: yes

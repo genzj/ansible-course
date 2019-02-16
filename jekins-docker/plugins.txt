@@ -1,5 +1,6 @@
 ace-editor
 ansible
+ansicolor
 ant
 antisamy-markup-formatter
 apache-httpcomponents-client-4-api
@@ -56,8 +57,10 @@ jira
 jquery-detached
 jsch
 junit
+ldap
 lockable-resources
 mailer
+mapdb-api
 matrix-auth
 matrix-project
 mercurial
@@ -85,6 +88,7 @@ sse-gateway
 ssh-credentials
 ssh-slaves
 structs
+subversion
 timestamper
 token-macro
 variant

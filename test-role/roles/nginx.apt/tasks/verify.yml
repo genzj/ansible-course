@@ -1,0 +1,20 @@
+---
+# - name: verify the index page
+#   pause:
+#     prompt: please check the index page
+
+- name: verify index page downloading
+  get_url:
+    url: http://127.0.0.1/
+    dest: /tmp/index.html
+    force: yes
+
+- name: verify the content contain host name
+  command: grep -q '{{ inventory_hostname }}' /tmp/index.html
+  register: rc
+
+# - name: verify the return value
+#   fail:
+#   when: rc is failed
+
+

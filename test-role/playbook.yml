@@ -1,0 +1,10 @@
+---
+- hosts: server
+  become: yes
+
+  roles:
+  - common
+  # - nginx.apt
+  - geerlingguy.nginx
+
+
