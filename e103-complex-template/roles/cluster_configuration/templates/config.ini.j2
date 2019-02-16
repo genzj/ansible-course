@@ -3,6 +3,6 @@ bind-ips = {{ inventory_hostname }}
 cluster-ips = 
 {%- for ip in groups.cluster %}
   {%- if ip != inventory_hostname -%}
-    {{ ' ' + ip + ('\n' if loop.last else ',') }}
+    {{ ' ' + ip + ('\n' if loop.last or (ip == groups.cluster[-2] and inventory_hostname == groups.cluster[-1]) else ',') }}
   {%- endif -%}
 {%- endfor %}
