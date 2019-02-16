@@ -13,7 +13,7 @@ class FilterModule(object):
     ''' Query filter '''
 
     # test with
-    #   ansible -m debug -a 'msg="{{ 8 | random_password}}"' server
+    #   ansible -m debug -a 'msg="{{ 8 | random_password }}"' server
 
     def filters(self):
         return {
