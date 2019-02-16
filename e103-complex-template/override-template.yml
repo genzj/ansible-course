@@ -1,0 +1,6 @@
+---
+- hosts: cluster
+  vars:
+    config_template: '{{ playbook_dir }}/templates/my-config.ini.j2'
+  roles:
+    - cluster_configuration
