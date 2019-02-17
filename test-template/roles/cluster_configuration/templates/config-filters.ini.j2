@@ -1,4 +1,0 @@
-bind-ip = {{ inventory_hostname }}
-
-cluster-ips = {{ groups.cluster | reject('eq', inventory_hostname) | join(',') }}
-

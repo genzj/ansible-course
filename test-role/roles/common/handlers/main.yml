@@ -1,5 +1,0 @@
----
-# handlers file for common
-- name: reboot os
-  reboot:
-  listen: reboot system
